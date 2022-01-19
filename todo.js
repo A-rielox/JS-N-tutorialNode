@@ -237,3 +237,35 @@ server.listen(5000);
 ///////////////////////////// 🍑 /////////////////////////////
 //               ////////////////////////////               //
 /////////////////////////////    /////////////////////////////
+
+//                  NPM
+//==================================================
+
+// local dependency --> use it only in this particular project
+// npm i <packageName>
+
+// global dependency --> use it in any project
+// npm install -g <packageName>
+// sudo npm install -g <packageName> ( mac )
+
+// package.json - manifest file ( stores important info about poject/package )
+// manual aproach ( create package.json in the root, create properties etc )
+// npm init ( step by step, press enter to skip )
+// npm init -y ( everything default )
+
+// para instalar como dev dependency --> -D ó --save-dev
+
+// nodemon --> queda haciendo 'watch' por cambios en los archivo y los ejecuta para no tener q ejecutar a cada rato el archivo en la consola
+// npm i nodemon -D
+
+// en los scripts, de 'package.json' algunos se pueden correr simplemente como 'npm start' pero otros se tienen q correr como 'npm run dev' ( npm run nombreDelComando )
+
+console.log('holi hola');
+
+// para desinstalar un package --> npm uninstall nombreDelPaquete
+
+/////////////////////////////    /////////////////////////////
+//               ////////////////////////////               //
+///////////////////////////// 🍑 /////////////////////////////
+//               ////////////////////////////               //
+/////////////////////////////    /////////////////////////////

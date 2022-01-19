@@ -1,20 +1,23 @@
 {
-  "name": "tutorialNode",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/A-rielox/JS-N-tutorialNode.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/A-rielox/JS-N-tutorialNode/issues"
-  },
-  "homepage": "https://github.com/A-rielox/JS-N-tutorialNode#readme"
+   "name": "tutorialNode",
+   "version": "1.0.0",
+   "description": "",
+   "main": "app.js",
+   "scripts": {
+      "start": "nodemon app.js"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/A-rielox/JS-N-tutorialNode.git"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/A-rielox/JS-N-tutorialNode/issues"
+   },
+   "homepage": "https://github.com/A-rielox/JS-N-tutorialNode#readme",
+   "devDependencies": {
+      "nodemon": "^2.0.15"
+   }
 }
