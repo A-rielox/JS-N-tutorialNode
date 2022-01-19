@@ -111,9 +111,8 @@ console.log(currentOS);
 
 //                  path module
 //============================================
-// devuelve un normalized resulting path
 // path.sep --> devuelve el separador de mi sistema
-// el join une la secuencia de paths con el separador de mi sistema
+// el join une la secuencia de paths con el separador de mi sistema ( devuelve un normalized resulting path )
 
 const path = require('path');
 
@@ -140,7 +139,7 @@ console.log(absolute);
 /////////////////////////////    /////////////////////////////
 
 //                  fs module - sync ( blocking )
-//=====================================================
+//=================================================================
 // carpeta 'content' con archivo 'first.txt' y 'second.txt'
 
 const { readFileSync, writeFileSync } = require('fs');
@@ -152,9 +151,9 @@ const second = readFileSync('./content/second.txt', 'utf8');
 console.log(first, second);
 // hola desde first text file. hola desde second text file.
 
-//si no existe el archivo del path q se pasa => node lo crea, el segundo parametro es el valor q queremos pasar
+// para "writeFileSync" --> si no existe el archivo del path q se pasa => node lo crea, el segundo parametro es el valor q queremos "escribir"
 // si el archivo ya tenia algo => lo va a sobreescribir
-// para q haga append a lo q ya está se pasa el tercer argumento { flag: 'a' }
+// para q haga "append" a lo q ya está se pasa el tercer argumento { flag: 'a' }
 writeFileSync(
    './content/archivo-creado.txt',
    `Here is the result: ${first}, ${second}`
@@ -167,12 +166,13 @@ writeFileSync(
 /////////////////////////////    /////////////////////////////
 
 //                  fs module - async ( non blocking )
-//=========================================================
+//======================================================================
 
 const { readFile, writeFile } = require('fs');
 
 // en async hay q pasar una callback-fcn, el result va a estar el resultado del readFile
-// como son async, se va metiendo cada paso en una callback-fcn, pero se arma el callbackHELL 👺👺
+// como son async, se va metiendo cada paso en una callback-fcn, pero se arma el 👺 callbackHELL 👺
+
 readFile('./content/first.txt', 'utf8', (err, result) => {
    if (err) {
       console.log(err);
@@ -185,8 +185,8 @@ readFile('./content/first.txt', 'utf8', (err, result) => {
          console.log(err);
          return;
       }
-
       const second = result;
+
       writeFile(
          './content/result-async.txt',
          `Here is the result: ${first}, ${second}`,
