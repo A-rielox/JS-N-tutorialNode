@@ -207,3 +207,33 @@ readFile('./content/first.txt', 'utf8', (err, result) => {
 ///////////////////////////// 🍑 /////////////////////////////
 //               ////////////////////////////               //
 /////////////////////////////    /////////////////////////////
+
+//                  HTTP module
+//==================================================
+const http = require('http');
+
+// req.url entrega el endpoint al q el usuario está tratando de entrar
+const server = http.createServer((req, res) => {
+   if (req.url === '/') {
+      res.end('Bienvenido al "home"');
+   } else if (req.url === '/about') {
+      res.end('Bienvenido al "about"');
+   } else {
+      /* respuesta default x si intentan meterse a una q no existe */
+      res.end(`
+         <h1>Oops!</h1>
+         <p>No se puede encontrar la pagina q buscas</p>
+         <a href="/">back home</a>
+      `);
+   }
+});
+
+// puerto en el q escucha el servidor
+// en http://localhost:5000 se va a ver lo q mande como respuesta
+server.listen(5000);
+
+/////////////////////////////    /////////////////////////////
+//               ////////////////////////////               //
+///////////////////////////// 🍑 /////////////////////////////
+//               ////////////////////////////               //
+/////////////////////////////    /////////////////////////////

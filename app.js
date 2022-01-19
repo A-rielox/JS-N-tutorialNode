@@ -1,35 +1,14 @@
-//                  fs module - async ( non blocking )
-//=========================================================
+//                  NPM
+//==================================================
 
-const { readFile, writeFile } = require('fs');
+// local dependency --> use it only in this particular project
+// npm i <packageName>
 
-// en async hay q pasar una callback-fcn, el result va a estar el resultado del readFile
-// como son async, se va metiendo cada paso en una callback-fcn, pero se arma el callbackHELL 👺👺
-readFile('./content/first.txt', 'utf8', (err, result) => {
-   if (err) {
-      console.log(err);
-      return;
-   }
-   const first = result;
+// global dependency --> use it in any project
+// npm install -g <packageName>
+// sudo npm install -g <packageName> ( mac )
 
-   readFile('./content/second.txt', 'utf8', (err, result) => {
-      if (err) {
-         console.log(err);
-         return;
-      }
-
-      const second = result;
-      writeFile(
-         './content/result-async.txt',
-         `Here is the result: ${first}, ${second}`,
-         (err, result) => {
-            /* en este caso solo estoy creando el archivo así q el console.log(result) va a mandar 'undefined', pero SI crea el archivo con el contenido, y TIENE Q LLEVAR LA CALLBACK-FCN  */
-            if (err) {
-               console.log(err);
-               return;
-            }
-            console.log(result);
-         }
-      );
-   });
-});
+// package.json - manifest file ( stores important info about poject/package )
+// manual aproach ( create package.json in the root, create properties etc )
+// npm init ( step by step, press enter to skip )
+// npm init -y ( everything default )
