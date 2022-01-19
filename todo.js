@@ -332,3 +332,88 @@ start();
 ///////////////////////////// 🍑 /////////////////////////////
 //               ////////////////////////////               //
 /////////////////////////////    /////////////////////////////
+
+//                EVENTS
+//======================================
+
+// on --> listen for an event
+// emit --> emit an event
+
+// ⭐ la forma más básica ⭐
+const EventEmitter = require('events');
+
+const customEventEmitter = new EventEmitter();
+
+// el 'on' escucha al evento 'response' y el '.emit' manda la respuesta QUE ESTÁ EN EL ON ( el console.log('data received') )
+customEmitter.on('response', () => {
+   console.log('data received');
+});
+customEmitter.emit('response');
+
+// ⭐ se puede tener más de una lógica a ejecutar para el mismo evento
+// en el ".emit" puedo poner parametros q se van a pasar a la callback-fcn de la respuesta en los ".on"
+const EventEmitter = require('events');
+
+const customEmitter = new EventEmitter();
+
+customEmitter.on('response', (name, id) => {
+   console.log(`data received user ${name} id: ${id}`);
+});
+customEmitter.on('response', () => {
+   console.log('otra lógica');
+});
+
+customEmitter.emit('response', 'arielox', 41);
+// data received user arielox id: 41
+// otra lógica
+
+// ⭐  usando Event Emitter API
+const http = require('http');
+
+// en lugar de crear el server de esta forma
+// const server = http.createServer((req, res) => {
+//   res.end('Welcome')
+// })
+
+// Using Event Emitter API
+const server = http.createServer();
+// emits request event
+// subcribe to it / listen for it / respond to it
+server.on('request', (req, res) => {
+   res.end('Welcome');
+});
+
+server.listen(5000);
+
+/////////////////////////////    /////////////////////////////
+//               ////////////////////////////               //
+///////////////////////////// 🍑 /////////////////////////////
+//               ////////////////////////////               //
+/////////////////////////////    /////////////////////////////
+
+//                STREAMS
+//======================================
+
+// Pueden ser :
+//    writeable
+//    readable
+//    duplex ( los dos anteriores )
+//    transform
+
+// con los métodos normales anteriores de 'readFile', si el archivo es muy grande => me puedo quedar sin memoria, o q sea muy grande para ponerlo en una variable, para esto está el 'readStream'
+
+// con el método "createReadStream" , creo el readStream y con su método ".on" escucho a la data, q en este caso va leyendo el archivo de a pedazos ( de a 65486 bytes ), y por cada pedazo voy ejecutando la callback-fcn.
+
+const { createReadStream } = require('fs');
+
+// default 64kb
+// last buffer - remainder
+// highWaterMark - control size
+// const stream = createReadStream('./content/big.txt', { highWaterMark: 90000 })
+// const stream = createReadStream('../content/big.txt', { encoding: 'utf8' })
+const stream = createReadStream('./content/big.txt');
+
+stream.on('data', result => {
+   console.log(result);
+});
+stream.on('error', err => console.log(err));
