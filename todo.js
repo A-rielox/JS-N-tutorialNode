@@ -138,3 +138,72 @@ console.log(absolute);
 ///////////////////////////// 🍑 /////////////////////////////
 //               ////////////////////////////               //
 /////////////////////////////    /////////////////////////////
+
+//                  fs module - sync ( blocking )
+//=====================================================
+// carpeta 'content' con archivo 'first.txt' y 'second.txt'
+
+const { readFileSync, writeFileSync } = require('fs');
+
+// obtiene el contenido del archivo
+// path y el encoding ( encoding del archivo creo :)
+const first = readFileSync('./content/first.txt', 'utf8');
+const second = readFileSync('./content/second.txt', 'utf8');
+console.log(first, second);
+// hola desde first text file. hola desde second text file.
+
+//si no existe el archivo del path q se pasa => node lo crea, el segundo parametro es el valor q queremos pasar
+// si el archivo ya tenia algo => lo va a sobreescribir
+// para q haga append a lo q ya está se pasa el tercer argumento { flag: 'a' }
+writeFileSync(
+   './content/archivo-creado.txt',
+   `Here is the result: ${first}, ${second}`
+);
+
+/////////////////////////////    /////////////////////////////
+//               ////////////////////////////               //
+///////////////////////////// 🍑 /////////////////////////////
+//               ////////////////////////////               //
+/////////////////////////////    /////////////////////////////
+
+//                  fs module - async ( non blocking )
+//=========================================================
+
+const { readFile, writeFile } = require('fs');
+
+// en async hay q pasar una callback-fcn, el result va a estar el resultado del readFile
+// como son async, se va metiendo cada paso en una callback-fcn, pero se arma el callbackHELL 👺👺
+readFile('./content/first.txt', 'utf8', (err, result) => {
+   if (err) {
+      console.log(err);
+      return;
+   }
+   const first = result;
+
+   readFile('./content/second.txt', 'utf8', (err, result) => {
+      if (err) {
+         console.log(err);
+         return;
+      }
+
+      const second = result;
+      writeFile(
+         './content/result-async.txt',
+         `Here is the result: ${first}, ${second}`,
+         (err, result) => {
+            /* en este caso solo estoy creando el archivo así q el console.log(result) va a mandar 'undefined', pero SI crea el archivo con el contenido, y TIENE Q LLEVAR LA CALLBACK-FCN  */
+            if (err) {
+               console.log(err);
+               return;
+            }
+            console.log(result);
+         }
+      );
+   });
+});
+
+/////////////////////////////    /////////////////////////////
+//               ////////////////////////////               //
+///////////////////////////// 🍑 /////////////////////////////
+//               ////////////////////////////               //
+/////////////////////////////    /////////////////////////////
